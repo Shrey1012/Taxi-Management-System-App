@@ -1,0 +1,75 @@
+<% layout('layouts/boilerplate') %> 
+
+<form action="/driver/details" method="POST" class="validated-form" novalidate>
+  <div class="mb-3">
+    <label for="Driver_Id" class="form-label">Driver ID</label>
+    <input type="text" class="form-control" id="Driver_Id" name="Driver_id" required>
+    <div class="valid-feedback">
+      Looks good!
+  </div>
+  </div>
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input type="text" class="form-control" id="firstName" name="First_name" required>
+      <div class="valid-feedback">
+        Looks good!
+    </div>
+    </div>
+    <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="lastName" name="Last_name" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="contact" class="form-label">Contact No.</label>
+        <input type="text" class="form-control" id="contact" name="Contact_no" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="License" class="form-label">License No.</label>
+        <input type="text" class="form-control" id="License" name="License_no" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="taxi_id" class="form-label">Taxi ID</label>
+        <input type="text" class="form-control" id="taxi_id" name="Taxi_id" required>
+        <div class="valid-feedback">
+          Looks good!
+      </div>
+      </div>
+      <div class="mb-3">
+        <label for="Registration_no" class="form-label">Taxi Registration No.</label>
+        <input type="text" class="form-control" id="Registration_no" name="Registration_no" required>
+        <div class="valid-feedback">
+          Looks good!
+      </div>
+      </div>
+      <div class="mb-3">
+          <label for="model" class="form-label">Taxi Model</label>
+          <input type="text" class="form-control" id="model" name="Model" required>
+          <div class="valid-feedback">
+              Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="Taxi_type" class="form-label">Taxi type</label>
+          <input type="text" class="form-control" id="Taxi_type" name="Taxi_type" required>
+          <div class="valid-feedback">
+              Looks good!
+          </div>
+        </div>
+        <div class="mb-3">
+          <label for="driver_email" class="form-label">Confirm Email</label>
+          <input type="text" class="form-control" id="driver_email" name="driver_email" required>
+          <div class="valid-feedback">
+              Looks good!
+          </div>
+        </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>

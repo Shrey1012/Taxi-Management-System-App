@@ -1,0 +1,33 @@
+<% layout('layouts/boilerplate') %> 
+
+<form action="/customer/<%=User_id%>/bill" method="POST" class="validated-form" novalidate>
+  <div class="mb-3">
+    <label for="Bill_no" class="form-label">Bill no</label>
+    <input type="text" class="form-control" id="Bill_no" name="Bill_no" required>
+    <div class="valid-feedback">
+      Looks good!
+  </div>
+  </div>
+    <div class="mb-3">
+      <label for="Bill_date" class="form-label">Bill date</label>
+      <input type="text" class="form-control" id="Bill_date" name="Bill_date" required>
+      <div class="valid-feedback">
+        Looks good!
+    </div>
+    </div>
+    <div class="mb-3">
+        <label for="Total amount" class="form-label">Total amount</label>
+        <input type="text" class="form-control" id="Total amount" name="Total_amount" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="User_User_id" class="form-label">Enter your ID</label>
+        <input type="text" class="form-control" id="User_User_id" name="User_User_id" required>
+        <div class="valid-feedback">
+          Looks good!
+      </div>
+      </div> 
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>

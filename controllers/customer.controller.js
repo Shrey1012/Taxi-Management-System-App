@@ -1,14 +1,136 @@
 const connection = require('../config/db');
 
-module.exports.getCustomers = (req,res) => {
-    const query = "SELECT * FROM customer";
+module.exports.renderDetails = (req, res) => {
+    res.render('customer/details')
+}
 
-    connection.query(query, (err,rows,fields) => {
-        if(err){
+module.exports.details = async (req, res) => {
+
+    const { email } = req.cookies;
+    const { User_id, First_name, Last_name, Contact_no, Address } = req.body;
+    const query = "INSERT INTO customer (User_id,First_name,Last_name,Contact_no,Address,email) VALUES (?,?,?,?,?,?);";
+    const responseData = await connection.promise().query(query, [User_id, First_name, Last_name, Contact_no, Address, email]);
+    res.cookie('User_id', `${User_id}`);
+    res.redirect(`/customer/${User_id}/home`);
+}
+
+module.exports.home = (req, res) => {
+    const { email, User_id } = req.cookies;
+    var trip;
+    const query1 = `SELECT * FROM customer where email ="${email}"`;
+    const query2 = `SELECT * FROM trip_details where User_User_id = ${User_id}`;
+    connection.query(query2, (err, result) => {
+        trip = result;
+    });
+    const response = connection.query(query1, (err, rows) => {
+        if (err) {
             res.send(err)
-        }
-        else {
-            res.send(rows);
+        } else {
+
+            const [{ User_id, First_name, Last_name, Contact_no, Address, email }] = rows;
+            res.cookie('User_id', `${User_id}`)
+            res.render('customer/home', { trip, User_id, First_name, Last_name, Contact_no, Address, email });
+
         }
     })
 }
+
+module.exports.renderEditForm = async (req, res) => {
+    const { User_id } = req.cookies;
+    const query = `SELECT * FROM customer where User_id = ${User_id}`
+    connection.query(query, (err, rows) => {
+        if (rows) {
+            const [{ First_name, Last_name, Contact_no, Address }] = rows;
+            res.render('customer/editDetails', { User_id, First_name, Last_name, Contact_no, Address });
+        }
+    })
+
+}
+
+module.exports.editDetails = async (req, res) => {
+    const { User_id } = req.cookies;
+    const { First_name, Last_name, Contact_no, Address } = req.body;
+    const query = `UPDATE customer set First_name="${First_name}",Last_name="${Last_name}", Contact_no ="${Contact_no}", Address ="${Address}" where User_id =${User_id}`
+    connection.query(query, [First_name, Last_name, Contact_no, Address], (err, rows) => {
+        if (err) {
+            console.log(err);
+        }
+        res.redirect(`/customer/${User_id}/home`);
+    })
+}
+
+module.exports.deleteDetails = async (req, res) => {
+    const { User_id, email } = req.cookies;
+    const query1 = `DELETE FROM customer WHERE User_id ="${User_id}"`;
+    const query2 = `DELETE FROM auth_data WHERE email ="${email}"`;
+    connection.query(query1)
+    connection.query(query2, (err, rows) => {
+        res.redirect('/');
+    })
+}
+
+module.exports.renderBill = async (req, res) => {
+    const { User_id } = req.cookies;
+    res.render('customer/billDetails', { User_id });
+
+}
+
+module.exports.bill = async (req, res) => {
+    const { User_id } = req.cookies;
+    const { Bill_no, Bill_date, Total_amount,User_User_id} = req.body;
+    const query = "INSERT INTO bill_details(Bill_no,Bill_date,Total_amount,User_User_id) VALUES(?,?,?,?)";
+    const responseData = await connection.promise().query(query, [Bill_no, Bill_date, Total_amount,User_User_id]);
+    res.redirect(`/customer/${User_id}/home`);
+}
+
+module.exports.renderTrip = async (req, res) => {
+    const { User_id } = req.cookies;
+    res.render('customer/tripDetails', { User_id });
+}
+
+module.exports.trip = async (req, res) => {
+    const { User_id } = req.cookies;
+    const { Trip_id, Trip_date, Trip_amount, Start_time, End_time, Pickup_address, Destination_address, User_User_id, User_Taxi_Taxi_id } = req.body;
+    const query = "INSERT INTO trip_details(Trip_id, Trip_date, Trip_amount, Start_time, End_time, Pickup_address, Destination_address,User_User_id,User_Taxi_Taxi_id) VALUES(?,?,?,?,?,?,?,?,?)";
+    const responseData = await connection.promise().query(query, [Trip_id, Trip_date, Trip_amount, Start_time, End_time, Pickup_address, Destination_address, User_User_id, User_Taxi_Taxi_id]);
+    res.redirect(`/customer/${User_id}/home`);
+}
+
+module.exports.renderFeedback = async (req, res) => {
+    const { User_id } = req.cookies;
+    res.render('customer/feedback', { User_id });
+}
+
+module.exports.feedback = async (req, res) => {
+    const { User_id } = req.cookies;
+    const { Feedback_id, Message, email, Rating ,User_User_id} = req.body;
+    const query = "INSERT INTO Feedback(Feedback_id, Message, email, Rating,User_User_id) VALUES(?,?,?,?,?)";
+    const responseData = await connection.promise().query(query, [Feedback_id, Message, email, Rating,User_User_id]);
+    res.redirect(`/customer/${User_id}/home`);
+}
+
+module.exports.showBills = async(req,res)=>{
+    const { User_id } = req.cookies;
+    const query = `SELECT * FROM bill_details where User_User_id = ${User_id}`;
+    connection.query(query, (err, result) => {
+        if (err) {
+            res.send('Error',err)
+        }else{
+        res.render('customer/allBills', { User_id,result });
+        }
+    });
+}
+
+module.exports.showFeedbacks = async(req,res)=>{
+    const { User_id } = req.cookies;
+    const query = `SELECT * FROM feedback where User_User_id = ${User_id}`;
+    connection.query(query, (err, result) => {
+        if (err) {
+            res.send('Error',err)
+        }else{
+        res.render('customer/allFeedbacks', { User_id,result });
+        }
+    });
+}
+
+

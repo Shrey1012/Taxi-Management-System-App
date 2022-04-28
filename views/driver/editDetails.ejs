@@ -1,0 +1,56 @@
+<% layout('layouts/boilerplate') %> 
+
+<form action="/driver/<%=Driver_id%>/home?_method=put" method="POST" class="validated-form" novalidate>
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input type="text" class="form-control" id="firstName" name="First_name" value="<%=First_name%>" required>
+      <div class="valid-feedback">
+        Looks good!
+    </div>
+    </div>
+    <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="lastName" name="Last_name" value="<%=Last_name%>" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="contact" class="form-label">Contact No.</label>
+        <input type="text" class="form-control" id="contact" name="Contact_no" value="<%=Contact_no%>" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+      </div>
+   <div class="mb-3">
+    <label for="License" class="form-label">License No.</label>
+    <input type="text" class="form-control" id="License" name="License_no" value="<%=License_no%>" required>
+    <div class="valid-feedback">
+        Looks good!
+    </div>
+  </div>
+  <div class="mb-3">
+    <label for="Registration_no" class="form-label">Taxi Registration No.</label>
+    <input type="text" class="form-control" id="Registration_no" name="Registration_no" value="<%=Registration_no%>" required>
+    <div class="valid-feedback">
+      Looks good!
+  </div>
+  </div>
+  <div class="mb-3">
+      <label for="model" class="form-label">Taxi Model</label>
+      <input type="text" class="form-control" id="model" name="Model" value="<%=Model%>" required>
+      <div class="valid-feedback">
+          Looks good!
+      </div>
+    </div>
+    <div class="mb-3">
+      <label for="Taxi_type" class="form-label">Taxi type</label>
+      <input type="text" class="form-control" id="Taxi_type" name="Taxi_type" value="<%=Taxi_type%>" required>
+      <div class="valid-feedback">
+          Looks good!
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success">Update</button>
+  </form>
+ 
+    

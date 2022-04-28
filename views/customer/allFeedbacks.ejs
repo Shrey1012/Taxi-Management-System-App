@@ -1,0 +1,25 @@
+<% layout('layouts/boilerplate') %>
+
+<a href="/customer/<%=User_id%>/home">Back to home</a>
+<br>
+<br>
+
+<div class="row">
+    <div class="col-6">
+        <% for(let i=0;i<result.length;i++ ){ %> 
+            <div class="card mb-3">
+                <div class="row">
+                   <div class="col-md-8">
+                       <div class="card-body">
+                           <p class="card-text">Message: <%= result[i].Message%> </p>
+                           <p class="card-text">
+                             <small class="text">Rating: <%= result[i].Rating%></small>  
+                           </p>
+                        </div>
+                   </div>
+                </div>
+            </div>
+        <% } %> 
+    </div>
+</div>
+

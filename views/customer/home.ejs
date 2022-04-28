@@ -1,0 +1,73 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="container" >
+    <div class="row row-cols-2">
+        <div class="col-6">
+            <div class="card text-white bg-dark mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Personal Details</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Name: <%=First_name%> <%= Last_name %>
+                    </li>
+                    <li class="list-group-item">Contact No: <%=Contact_no%>
+                    </li>
+                    <li class="list-group-item">Email: <%=email%>
+                    </li>
+                    <li class="list-group-item">Address: <%=Address%>
+                    </li>
+                </ul>
+
+                <div class="card-body">
+                    <a class="card-link btn btn-info" href="/customer/<%=User_id%>/details/edit">Edit</a>
+                    <form class="d-inline" action="/customer/<%=User_id%>/details?_method=delete" method="post">
+                        <button class="btn btn-danger">Delete</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-6">
+            <% for(let i=0;i<trip.length;i++ ){ %>
+                <div class="card mb-3">
+                    <div class="row" >
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                <h5 class="card-title">Date: <%= trip[i].Trip_date %>
+                                </h5>
+                                <p class="card-text">Amount: <%= trip[i].Trip_amount%>
+                                </p>
+                                <p class="card-text">
+                                    <small class="text-muted">Time: <%= trip[i].Start_time %> to <%=trip[i].End_time %> </small>
+                                </p>
+                                <p class="card-text">
+                                    <small class="text-muted">From <%= trip[i].Pickup_address%> to <%=trip[i].Destination_address %></small>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% } %>
+        </div>
+    
+    </div>
+    <div class="row">
+        <div class="d-grid gap-2 col-3">
+            <button type="button" class="btn btn-warning btn-lg">Book Taxi</button>
+            <a class="btn btn-outline-primary" href="/customer/<%=User_id%>/trip" role="button">Enter your trip details</a>
+            <a class="btn btn-outline-primary" href="/customer/<%=User_id%>/bill" role="button">Enter your bill details</a>
+            <a class="btn btn-outline-secondary" href="/customer/<%=User_id%>/feedback" role="button">Enter feedback</a>
+        </div>
+
+        <div class="d-grid gap-2 col-3" style="align-content: flex-start;">
+            <a class="btn btn-info" href="/customer/<%=User_id%>/allBills" role="button"
+                style="height: min-content;">Show All Bills</a>
+            <a class="btn btn-success" href="/customer/<%=User_id%>/allFeedbacks" role="button"
+                style="height: min-content; ">Show All Feedbacks</a>
+        </div>
+
+    </div>
+    </div>
+
+
+

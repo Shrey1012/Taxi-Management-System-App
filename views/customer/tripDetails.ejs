@@ -1,0 +1,68 @@
+<% layout('layouts/boilerplate') %> 
+
+<form action="/customer/<%=User_id%>/trip" method="POST" class="validated-form" novalidate>
+    <div class="mb-3">
+        <label for="Trip_id" class="form-label">Trip ID</label>
+        <input type="text" class="form-control" id="Trip_id" name="Trip_id" required>
+        <div class="valid-feedback">
+          Looks good!
+      </div>
+      </div>
+    <div class="mb-3">
+      <label for="Trip_date" class="form-label">Trip date</label>
+      <input type="text" class="form-control" id="Trip_date" name="Trip_date" required>
+      <div class="valid-feedback">
+        Looks good!
+    </div>
+    </div>
+    <div class="mb-3">
+        <label for="Trip_amount" class="form-label">Trip amount</label>
+        <input type="text" class="form-control" id="Trip_amount" name="Trip_amount" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="Start_time" class="form-label">Start time</label>
+        <input type="text" class="form-control" id="Start_time" name="Start_time" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="End_time" class="form-label">End time</label>
+        <input type="text" class="form-control" id="End_time" name="End_time" required></textarea>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+   </div>
+   <div class="mb-3">
+    <label for="Pickup_address" class="form-label">Pickup Address</label>
+    <textarea class="form-control" id="Pickup_address" style="width: 100%;" name="Pickup_address" required></textarea>
+    <div class="valid-feedback">
+        Looks good!
+    </div>
+</div>
+<div class="mb-3">
+    <label for="Destination_address" class="form-label">Destination Address</label>
+    <textarea class="form-control" id="Destination_address" style="width: 100%;" name="Destination_address" required></textarea>
+    <div class="valid-feedback">
+        Looks good!
+    </div>
+</div>
+<div class="mb-3">
+    <label for="User_User_id" class="form-label">Enter your ID</label>
+    <input type="text" class="form-control" id="User_User_id" name="User_User_id" required>
+    <div class="valid-feedback">
+      Looks good!
+  </div>
+  </div> 
+  <div class="mb-3">
+    <label for="User_Taxi_Taxi_id" class="form-label">Enter your cab ID</label>
+    <input type="text" class="form-control" id="User_Taxi_Taxi_id" name="User_Taxi_Taxi_id" required>
+    <div class="valid-feedback">
+      Looks good!
+  </div>
+  </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>

@@ -1,0 +1,72 @@
+<% layout('layouts/boilerplate') %>
+        
+        <div class="row">
+            <div class="col-6">
+                <div class="card text-white bg-dark mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">Personal Details</h5>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">Name: <%=First_name%> <%= Last_name %>
+                        </li>
+                        <li class="list-group-item">Contact No: <%=Contact_no%>
+                        </li>
+                        <li class="list-group-item">Email: <%=email%>
+                        </li>
+                        <li class="list-group-item">License No: <%=License_no%>
+                        </li>
+                        <li class="list-group-item">Rating: <%=Rating%>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-6">
+                <% for(let i=0;i<trip.length;i++ ){ %> 
+                    <div class="card mb-3">
+                        <div class="row">
+                           <div class="col-md-8">
+                               <div class="card-body">
+                                   <h5 class="card-title">Date: <%= trip[i].Trip_date %> </h5>
+                                   <p class="card-text">Amount: <%= trip[i].Trip_amount%> </p>
+                                   <p class="card-text">
+                                     <small class="text-muted">Time: <%= trip[i].Start_time %> to <%= trip[i].End_time %>  </small>  
+                                   </p>
+                                   <p class="card-text">
+                                    <small class="text-muted">From <%= trip[i].Pickup_address%> to <%= trip[i].Destination_address %></small>  
+                                  </p>
+                                </div>
+                           </div>
+                        </div>
+                    </div>
+                <% } %> 
+            </div>
+        </div>
+
+    <div class="row">
+        <div class="col-6">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Taxi Details</h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item">Registration No: <%=Registration_no %>
+                    </li>
+                    <li class="list-group-item">Model: <%=Model%>
+                    </li>
+                    <li class="list-group-item">Type: <%=Taxi_type%>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="card-body">
+        <a class="card-link btn btn-info" href="/driver/<%=Driver_id%>/details/edit">Edit</a>
+        <form class="d-inline" action="/Driver/<%=Driver_id%>/details?_method=delete" method="post">
+            <button class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+
+   

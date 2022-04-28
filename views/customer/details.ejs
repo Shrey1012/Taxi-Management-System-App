@@ -1,0 +1,40 @@
+<% layout('layouts/boilerplate') %> 
+
+<form action="/customer/details" method="POST" class="validated-form" novalidate>
+  <div class="mb-3">
+    <label for="user_Id" class="form-label">User ID</label>
+    <input type="text" class="form-control" id="user_Id" name="User_id" required>
+    <div class="valid-feedback">
+      Looks good!
+  </div>
+  </div>
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input type="text" class="form-control" id="firstName" name="First_name" required>
+      <div class="valid-feedback">
+        Looks good!
+    </div>
+    </div>
+    <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="lastName" name="Last_name" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="contact" class="form-label">Contact No.</label>
+        <input type="text" class="form-control" id="contact" name="Contact_no" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <textarea class="form-control" id="address" style="height: 100px" name="Address" required></textarea>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+   </div>
+    <button type="submit" class="btn btn-success">Submit</button>
+  </form>

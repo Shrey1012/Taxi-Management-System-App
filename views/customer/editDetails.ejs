@@ -1,0 +1,35 @@
+<% layout('layouts/boilerplate') %> 
+
+<form action="/customer/<%=User_id%>/home?_method=put" method="POST" class="validated-form" novalidate>
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input type="text" class="form-control" id="firstName" name="First_name" value="<%=First_name%>" required>
+      <div class="valid-feedback">
+        Looks good!
+    </div>
+    </div>
+    <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="lastName" name="Last_name" value="<%=Last_name%>" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="contact" class="form-label">Contact No.</label>
+        <input type="text" class="form-control" id="contact" name="Contact_no" value="<%=Contact_no%>" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <input class="form-control align-top" id="address" style="height: 100px" name="Address" value="<%= Address %>" required>
+        <div class="valid-feedback">
+            Looks good!
+        </div>
+   </div>
+    <button type="submit" class="btn btn-success">Update</button>
+  </form>
+ 
+    
