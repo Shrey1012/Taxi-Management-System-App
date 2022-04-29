@@ -13,9 +13,8 @@ router.route('/login')
     .get(authControllers.renderLogin)
     .post(authControllers.loginUser)
 
-router.get('/logout',(req,res)=>{
-    res.redirect('/');
-})
+router.route('/logout')
+    .get(authControllers.logout)
 
 
 

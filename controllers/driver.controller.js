@@ -20,20 +20,18 @@ module.exports.details = async (req, res) => {
 
 module.exports.home = async (req, res) => {
     const { email,Taxi_id} = req.cookies;
-    var trip;
-    const query1 = `SELECT * FROM trip_details where User_Taxi_Taxi_id = ${Taxi_id}`;
-    connection.query(query1, (err, result) => {
-        trip = result;
-    })
-    const query2 = `SELECT * FROM driver,taxi where email ="${email}" and Taxi_id="${Taxi_id}" `;
-    const response = connection.query(query2, (err, rows) => {
+   
+    const query = `SELECT * FROM driver,taxi where email ="${email}" and Taxi_id="${Taxi_id}"; SELECT * FROM trip_details where User_Taxi_Taxi_id = ${Taxi_id}`;
+    const response = connection.query(query, (err, rows) => {
         if (err) {
             res.send(err)
         } else {
-            const [{ Driver_id,Taxi_id,First_name, Last_name, Contact_no, License_no, email, Rating, Registration_no, Model, Taxi_type }] = rows;
+            const [{ Driver_id,Taxi_id,First_name, Last_name, Contact_no, License_no, email, Rating, Registration_no, Model, Taxi_type }] = rows[0];
             res.cookie('Driver_id', Driver_id);
-            res.cookie('Taxi_id', Taxi_id);        
-            res.render('driver/home', { trip, Driver_id, Taxi_id, First_name, Last_name, Contact_no, License_no, email, Rating, Registration_no, Model, Taxi_type });
+            res.cookie('Taxi_id', Taxi_id);  
+            var trip = rows[1];    
+            console.log(trip);  
+            return res.render('driver/home', { trip, Driver_id, Taxi_id, First_name, Last_name, Contact_no, License_no, email, Rating, Registration_no, Model, Taxi_type });
         }
     })
 }

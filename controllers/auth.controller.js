@@ -57,6 +57,7 @@ module.exports.loginUser = async (req, res) => {
             const response = connection.query(query, (err, rows) => {
                 const [{User_id}] = rows;
                 res.cookie('email', `${email}`);
+                res.cookie('User_id',`${User_id}`);
                 res.redirect(`/customer/${User_id}/home`);
             })
 
@@ -66,6 +67,7 @@ module.exports.loginUser = async (req, res) => {
             
             const response =  connection.query(query, (err, rows) => {
                 const [{Driver_id,Taxi_id}] = rows;
+                res.cookie('User_id',`${Driver_id}`);
                 res.cookie('Taxi_id',`${Taxi_id}`);
                 res.cookie('email', `${email}`);
                 res.redirect(`/driver/${Driver_id}/home`);
@@ -77,4 +79,12 @@ module.exports.loginUser = async (req, res) => {
             msg: 'Invalid email / password',
         });
     }
+}
+
+module.exports.logout = (req,res)=>{
+    res.clearCookie("User_id");
+    res.clearCookie("email");
+    res.clearCookie("Driver_id");
+    res.clearCookie("Taxi_id");
+    res.redirect('/');
 }

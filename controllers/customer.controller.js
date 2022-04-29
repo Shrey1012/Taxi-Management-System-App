@@ -14,25 +14,22 @@ module.exports.details = async (req, res) => {
     res.redirect(`/customer/${User_id}/home`);
 }
 
-module.exports.home = (req, res) => {
+module.exports.home = function (req, res) {
     const { email, User_id } = req.cookies;
-    var trip;
-    const query1 = `SELECT * FROM customer where email ="${email}"`;
-    const query2 = `SELECT * FROM trip_details where User_User_id = ${User_id}`;
-    connection.query(query2, (err, result) => {
-        trip = result;
-    });
-    const response = connection.query(query1, (err, rows) => {
+    
+    const query = `SELECT * FROM customer where email ="${email}";SELECT * FROM trip_details where User_User_id = ${User_id};`;
+
+    const response = connection.query(query, (err, rows) => {
         if (err) {
-            res.send(err)
+            res.send(err);
         } else {
 
-            const [{ User_id, First_name, Last_name, Contact_no, Address, email }] = rows;
-            res.cookie('User_id', `${User_id}`)
-            res.render('customer/home', { trip, User_id, First_name, Last_name, Contact_no, Address, email });
-
+            const [{ User_id, First_name, Last_name, Contact_no, Address, email }] = rows[0];
+            res.cookie('User_id', `${User_id}`);
+            var trip = rows[1];
+            return res.render('customer/home', { trip, User_id, First_name, Last_name, Contact_no, Address, email });
         }
-    })
+    });
 }
 
 module.exports.renderEditForm = async (req, res) => {
