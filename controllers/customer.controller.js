@@ -130,4 +130,16 @@ module.exports.showFeedbacks = async(req,res)=>{
     });
 }
 
+module.exports.showBillAbove100 = (req,res)=>{
+    const { User_id } = req.cookies;
+    const query = `SELECT * FROM Bill_details WHERE Total_amount > 100 AND User_User_id = ${User_id};`;
+    connection.query(query,(err,rows)=>{
+        if (err) {
+            res.send('Error',err)
+        }else{
+        res.render('customer/billsAbove100', { User_id,rows });
+        }
+    })
+}
+
 

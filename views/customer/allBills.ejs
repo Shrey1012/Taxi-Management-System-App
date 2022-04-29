@@ -3,7 +3,6 @@
     <a href="/customer/<%=User_id%>/home">Back to home</a>
     <br>
     <br>
-
     <div class="row">
         <div class="col-6">
             <% for(let i=0;i<result.length;i++ ){ %>
@@ -25,3 +24,5 @@
                 <% } %>
         </div>
     </div>
+
+    <a class="btn btn-info" href="/customer/<%=User_id%>/billsAbove100" role="button">Show bills which are above 100 &#8377;</a>

@@ -12,6 +12,7 @@ const connection = require('./config/db');
 const authRoutes = require('./routes/auth.routes');
 const customerRoutes = require('./routes/customer.routes');
 const driverRoutes = require('./routes/driver.routes');
+const { nextTick } = require('process');
 
 
 
@@ -36,7 +37,8 @@ app.use('/driver',driverRoutes);
 
 
 app.get('/',(req,res)=>{
-    res.render('home');
+    const {email} = req.cookies;
+    res.render('home',{email});
 })
 
 app.listen(3000,()=>{

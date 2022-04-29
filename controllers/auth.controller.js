@@ -2,7 +2,8 @@ const connection = require('../config/db');
 const { hashSync, compareSync } = require('bcrypt');
 
 module.exports.renderRegister = (req, res) => {
-    res.render('register')
+    const {email} = req.cookies;
+    res.render('register',{email})
 }
 
 module.exports.registerUser = async (req, res) => {
@@ -30,7 +31,8 @@ module.exports.registerUser = async (req, res) => {
 }
 
 module.exports.renderLogin = (req, res) => {
-    res.render('login');
+    const {email} = req.cookies;
+    res.render('login',{email});
 }
 
 module.exports.loginUser = async (req, res) => {

@@ -1,0 +1,29 @@
+<% layout('layouts/boilerplate') %>
+
+<a href="/customer/<%=User_id%>/home">Back to home</a>
+<br>
+<br>
+<a href="/customer/<%=User_id%>/allBills">Show All Bills</a>
+<br>
+<br>
+<div class="row">
+    <div class="col-6">
+        <% for(let i=0;i<rows.length;i++ ){ %>
+            <div class="card mb-3">
+                <div class="row">
+                    <div class="col-md-8">
+                        <div class="card-body">
+                            <h5 class="card-title">Bill No: <%= rows[i].Bill_no %>
+                            </h5>
+                            <p class="card-text">Date: <%= rows[i].Bill_date%>
+                            </p>
+                            <p class="card-text">
+                                <small class="text">Total Amount: <%= rows[i].Total_amount %></small>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+    </div>
+</div>

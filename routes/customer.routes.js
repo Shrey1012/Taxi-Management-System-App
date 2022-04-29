@@ -25,6 +25,8 @@ router.get('/:id/allBills',customerControllers.showBills);
 
 router.get('/:id/allFeedbacks',customerControllers.showFeedbacks);
 
+router.get('/:id/billsAbove100',customerControllers.showBillAbove100);
+
 
 router.get('/:id/details/edit', customerControllers.renderEditForm);
 
